@@ -1,0 +1,47 @@
+name: Deploy Hugo to GitHub Pages
+
+# 触发条件：推送到 main 分支时自动执行
+# 也可以在 GitHub 网页上点 "Run workflow" 手动触发
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+# 同一时间只跑一个部署，避免冲突
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 拉取源码（含 LoveIt 主题 submodule）
+      - name: Checkout source code
+        uses: actions/checkout@v4
+        with:
+          submodules: true   # ⚠️ 必须开，否则拉不到 LoveIt 主题
+          fetch-depth: 0
+
+      # 2. 安装 Hugo（版本要和本地一致）
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.163.3'
+          extended: true
+
+      # 3. 编译站点，输出到 public/ 目录
+      - name: Build site
+        run: hugo --minify
+
+      # 4. 把 public/ 推送到 alei37/alei37.github.io 仓库的 main 分支
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          external_repository: alei37/alei37.github.io
+          publish_dir: ./public
+          publish_branch: main
+          keep_files: false
+          force_orphan: true
