@@ -50,6 +50,25 @@ theme = "LoveIt"
   # 自定义 CSS
   customCSS = []
   
+# 页面头部导航栏
+[params.header]
+  # 桌面端导航栏模式 ["fixed", "normal", "auto"]
+  desktopMode = "fixed"
+  # 移动端导航栏模式
+  mobileMode = "auto"
+  # 导航栏标题（就是左上角显示的文字）
+  [params.header.title]
+    # LOGO 图片（留空就用文字）
+    logo = ""
+    # 标题文字 ← 你要改的就是这个
+    name = "alei 的博客"
+    # 标题前的图标（HTML 格式，可选）
+    pre = ""
+    # 标题后的图标
+    post = ""
+    # 标题是否带打字机动画
+    typeit = false
+
 [params.home]
   # 全屏 Hero 模式
   homeHeaderType = "jumbotron"  # jumbotron = 全屏大图模式
@@ -138,17 +157,17 @@ theme = "LoveIt"
   weight = 10
 [[menu.main]]
   identifier = "computer"
-  name = "💻 计算机学习"
+  name = "计算机学习"
   url = "/posts/computer/"
   weight = 11
 [[menu.main]]
   identifier = "seismology"
-  name = "🌋 地震学习"
+  name = "地震学习"
   url = "/posts/seismology/"
   weight = 12
 [[menu.main]]
   identifier = "fitness"
-  name = "💪 健身"
+  name = "健身"
   url = "/posts/fitness/"
   weight = 13
 [[menu.main]]
