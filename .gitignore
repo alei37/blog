@@ -1,0 +1,13 @@
+# Hugo build output
+public/
+resources/_gen/
+assets/_gen/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
