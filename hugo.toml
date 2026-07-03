@@ -1,7 +1,7 @@
 baseURL = "https://alei37.github.io/"
 defaultContentLanguage = "zh-cn"
 locale = "zh-CN"
-title = "alei 的博客"
+title = "alei's blog"
 theme = "LoveIt"
 
 # 部署
@@ -61,7 +61,7 @@ theme = "LoveIt"
     # LOGO 图片（留空就用文字）
     logo = ""
     # 标题文字 ← 你要改的就是这个
-    name = "alei 的博客"
+    name = "alei's blog"
     # 标题前的图标（HTML 格式，可选）
     pre = ""
     # 标题后的图标
