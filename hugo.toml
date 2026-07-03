@@ -133,13 +133,16 @@ theme = "LoveIt"
   [params.comment.giscus]
     enable = true
     repo = "alei37/alei37.github.io"
-    repoId = "R_xxx"
+    repoId = "R_kgDOTMJovQ"
     category = "Announcements"
-    categoryId = "DIC_xxx"
+    categoryId = "DIC_kwDOTMJovc4DAaga"
     mapping = "pathname"
     reactionsEnabled = "1"
     emitMetadata = "0"
     inputPosition = "bottom"
+    lightTheme = "noborder_light"
+    darkTheme = "noborder_dark"
+    lang = "zh-CN"
 
 [params.mapbox]
   enable = false
