@@ -1,6 +1,6 @@
 baseURL = "https://alei37.github.io/"
-languageCode = "zh-cn"
 defaultContentLanguage = "zh-cn"
+locale = "zh-CN"
 title = "alei 的博客"
 theme = "LoveIt"
 
@@ -16,7 +16,11 @@ theme = "LoveIt"
 ###############################################
 [params]
   env = "production"
-  author = "alei"
+  # 作者信息（LoveIt 要求是对象，不是字符串）
+  [params.author]
+    name = "alei"
+    email = "2114591501@qq.com"
+    link = "/about/"
   description = "记录技术探索 · 地震学笔记 · 生活随想"
   keywords = ["博客", "地震学", "计算机", "健身", "书单"]
   
@@ -24,7 +28,7 @@ theme = "LoveIt"
   avatar = "/images/avatar.jpg"
   
   # 关于页面文字
-  tagline = "地震学研究生 · 程序员 · 健身爱好者"
+  tagline = "地震学研究生 · 一个好奇的人 "
   
   # 头图（首页 Hero 背景）
   header_image = "/images/alei.png"
