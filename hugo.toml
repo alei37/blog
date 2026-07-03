@@ -1,0 +1,179 @@
+baseURL = "https://alei37.github.io/"
+languageCode = "zh-cn"
+defaultContentLanguage = "zh-cn"
+title = "alei 的博客"
+theme = "LoveIt"
+
+# 部署
+[deployment]
+  [[deployment.targets]]
+    name = "github"
+    URL = "git@github.com:alei37/alei37.github.io.git"
+    branch = "main"
+
+###############################################
+# 站点信息
+###############################################
+[params]
+  env = "production"
+  author = "alei"
+  description = "记录技术探索 · 地震学笔记 · 生活随想"
+  keywords = ["博客", "地震学", "计算机", "健身", "书单"]
+  
+  # 头像（放在 static/images/avatar.jpg）
+  avatar = "/images/avatar.jpg"
+  
+  # 关于页面文字
+  tagline = "地震学研究生 · 程序员 · 健身爱好者"
+  
+  # 头图（首页 Hero 背景）
+  header_image = "/images/alei.png"
+  
+  # 社交链接（按需填写）
+  [params.social]
+    github = "alei37"
+    email = "2114591501@qq.com"
+    # bilibili = "alei_37"
+
+###############################################
+# 主题配置
+###############################################
+[params.style]
+  # 主题色
+  themeColor = "#0070c0"
+  # 暗色主题配色
+  darkThemeColor = "#5e72e4"
+  # 自定义 CSS
+  customCSS = []
+  
+[params.home]
+  # 全屏 Hero 模式
+  homeHeaderType = "jumbotron"  # jumbotron = 全屏大图模式
+  # 首页每页文章数
+  postsPerPage = 10
+  # 显示文章列表
+  postDateFormat = "2006-01-02"
+  # 显示分类
+  showCategories = true
+  # 显示标签
+  showTags = true
+
+[params.page]
+  # 显示目录
+  showTableOfContents = true
+  # 显示字数统计
+  showWordCount = true
+  # 显示阅读时间
+  showReadingTime = true
+  # 评论
+  enableComments = true
+  # 代码高亮
+  highlight = true
+  highlightLanguages = ["python", "fortran", "matlab", "bash"]
+  highlightLanguagesDefault = false
+
+[params.search]
+  enable = true
+  # 本地搜索（无需配置 Algolia）
+  [params.search.algolia]
+    enable = false
+  # Fuse.js 本地搜索
+  [params.search.fusejs]
+    enable = true
+    # 搜索结果数量
+    threshold = 0.6
+    # 是否显示快捷键提示
+    showKeyHint = true
+
+[params.analytics]
+  # Google Analytics（填你的 ID）
+  google_analytics = ""
+  # 不蒜子统计（国内友好）
+  busuanzi_site_uv = true
+  busuanzi_site_pv = true
+
+[params.comment]
+  enable = true
+  # Giscus（GitHub Discussions 评论，推荐）
+  [params.comment.giscus]
+    enable = true
+    repo = "alei37/alei37.github.io"
+    repoId = "R_xxx"
+    category = "Announcements"
+    categoryId = "DIC_xxx"
+    mapping = "pathname"
+    reactionsEnabled = "1"
+    emitMetadata = "0"
+    inputPosition = "bottom"
+
+[params.math]
+  enable = true
+  provider = "katex"  # 或 "mathjax"
+
+[params.mapbox]
+  enable = false
+
+[params.encryption]
+  enable = false
+
+[params.flowchart]
+  enable = false
+
+###############################################
+# 菜单导航
+###############################################
+[[menu.main]]
+  identifier = "posts"
+  name = "文章"
+  url = "/posts/"
+  weight = 10
+[[menu.main]]
+  identifier = "computer"
+  name = "💻 计算机学习"
+  url = "/posts/computer/"
+  weight = 11
+[[menu.main]]
+  identifier = "seismology"
+  name = "🌋 地震学习"
+  url = "/posts/seismology/"
+  weight = 12
+[[menu.main]]
+  identifier = "fitness"
+  name = "💪 健身"
+  url = "/posts/fitness/"
+  weight = 13
+[[menu.main]]
+  identifier = "books"
+  name = "📚 书籍分享"
+  url = "/books/"
+  weight = 14
+[[menu.main]]
+  identifier = "about"
+  name = "关于"
+  url = "/about/"
+  weight = 20
+
+###############################################
+# 文章分类（对应四个分区）
+###############################################
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+###############################################
+# Markdown 渲染
+###############################################
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    noClasses = false
+    codeFences = true
+    style = "github-dark"
+
+###############################################
+# 输出配置
+###############################################
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
