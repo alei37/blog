@@ -28,7 +28,7 @@ cover: /images/about-cover.jpg
 
 ### 🔗 联系方式
 - GitHub: [alei](https://github.com/alei)
-- Email: alei@example.com
+- Email: 2114591501@qq.com
 - 微信公众号：待定
 
 ---
