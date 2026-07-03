@@ -1,15 +1,25 @@
 /*!
  * math-dblclick.js
  * 给 LoveIt 主题的 KaTeX 公式加双击复制 LaTeX 源码功能
- * 依赖：KaTeX 渲染的 DOM（.katex-mathml annotation）
+ *
+ * 关键点：LoveIt 主题调用 KaTeX auto-render 时没有指定 output 选项，
+ * 默认只输出 HTML（无 MathML），找不到 .katex-mathml annotation 标签。
+ * 所以这里 monkey-patch renderMathInElement，强制输出 htmlAndMathml。
  */
 (function () {
   'use strict';
 
-  /**
-   * 从 KaTeX DOM 中提取 LaTeX 源码
-   * KaTeX 会把 LaTeX 放在 <annotation encoding="application/x-tex"> 里
-   */
+  // ========== 步骤 1：让 KaTeX 同时输出 MathML ==========
+  // 必须放在 IIFE 顶部，并尽早执行（在 theme.js 调 renderMathInElement 之前）
+  if (typeof window.renderMathInElement === 'function') {
+    var _origRender = window.renderMathInElement;
+    window.renderMathInElement = function (elem, options) {
+      var newOpts = Object.assign({}, options || {}, { output: 'htmlAndMathml' });
+      return _origRender.call(this, elem, newOpts);
+    };
+  }
+
+  // ========== 步骤 2：从 KaTeX DOM 提取 LaTeX 源码 ==========
   function extractLatex(katexEl) {
     var annotation = katexEl.querySelector('.katex-mathml annotation');
     if (!annotation) return null;
@@ -23,14 +33,11 @@
     return tex;
   }
 
-  /**
-   * 复制到剪贴板（带 fallback）
-   */
+  // ========== 步骤 3：复制到剪贴板（带 fallback） ==========
   function copyToClipboard(text) {
     if (navigator.clipboard && window.isSecureContext) {
       return navigator.clipboard.writeText(text);
     }
-    // 旧浏览器兜底
     return new Promise(function (resolve, reject) {
       var ta = document.createElement('textarea');
       ta.value = text;
@@ -47,9 +54,7 @@
     });
   }
 
-  /**
-   * 弹"Copied!"小提示
-   */
+  // ========== 步骤 4：弹"Copied!"小提示 ==========
   function showTip(x, y) {
     var tip = document.createElement('div');
     tip.textContent = '✓ Copied!';
@@ -65,33 +70,36 @@
     setTimeout(function () { document.body.removeChild(tip); }, 1300);
   }
 
-  /**
-   * 给所有 .katex 元素绑定双击事件（已绑过的跳过）
-   */
+  // ========== 步骤 5：给所有 .katex 元素绑定 dblclick ==========
   function bind() {
-    var katexNodes = document.querySelectorAll('.katex:not([data-dblclick-bound])');
-    katexNodes.forEach(function (el) {
+    var nodes = document.querySelectorAll('.katex:not([data-dblclick-bound])');
+    nodes.forEach(function (el) {
       el.setAttribute('data-dblclick-bound', '1');
       el.addEventListener('dblclick', function (e) {
         e.preventDefault();
         e.stopPropagation();
         var tex = extractLatex(el);
-        if (!tex) return;
+        if (!tex) {
+          console.warn('[dblclick-copy] 未找到 LaTeX 源码（MathML 输出未开启？）');
+          return;
+        }
         copyToClipboard(tex)
           .then(function () { showTip(e.clientX, e.clientY); })
-          .catch(function (err) { console.error('[dblclick-copy] failed:', err); });
+          .catch(function (err) { console.error('[dblclick-copy] 复制失败:', err); });
       });
     });
   }
 
-  // 首次绑定（DOM ready 后）
+  // DOM ready 后绑定
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', bind);
+    document.addEventListener('DOMContentLoaded', function () {
+      // 多绑几次，应对 KaTeX 异步/分批渲染
+      bind();
+      setTimeout(bind, 200);
+      setTimeout(bind, 800);
+      setTimeout(bind, 2000);
+    });
   } else {
     bind();
   }
-
-  // 兜底：KaTeX 异步渲染/动态加载情况下再绑一次
-  setTimeout(bind, 500);
-  setTimeout(bind, 1500);
 })();
