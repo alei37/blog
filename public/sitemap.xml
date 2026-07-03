@@ -1,0 +1,18 @@
+<urlset
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    ><url>
+            <loc>http://0.0.0.0:1313/posts/computer/</loc><lastmod>2026-07-03T11:55:00&#43;08:00</lastmod></url><url>
+            <loc>http://0.0.0.0:1313/</loc><lastmod>2026-07-03T11:55:00&#43;08:00</lastmod></url><url>
+            <loc>http://0.0.0.0:1313/categories/</loc><lastmod>2026-07-03T11:55:00&#43;08:00</lastmod></url><url>
+            <loc>http://0.0.0.0:1313/posts/computer/hello-world/</loc><lastmod>2026-07-03T11:55:00&#43;08:00</lastmod></url><url>
+            <loc>http://0.0.0.0:1313/tags/hugo/</loc><lastmod>2026-07-03T11:55:00&#43;08:00</lastmod></url><url>
+            <loc>http://0.0.0.0:1313/posts/</loc><lastmod>2026-07-03T11:55:00&#43;08:00</lastmod></url><url>
+            <loc>http://0.0.0.0:1313/tags/</loc><lastmod>2026-07-03T11:55:00&#43;08:00</lastmod></url><url>
+            <loc>http://0.0.0.0:1313/tags/%E5%8D%9A%E5%AE%A2/</loc><lastmod>2026-07-03T11:55:00&#43;08:00</lastmod></url><url>
+            <loc>http://0.0.0.0:1313/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0/</loc><lastmod>2026-07-03T11:55:00&#43;08:00</lastmod></url><url>
+            <loc>http://0.0.0.0:1313/tags/%E5%85%A5%E9%97%A8/</loc><lastmod>2026-07-03T11:55:00&#43;08:00</lastmod></url><url>
+            <loc>http://0.0.0.0:1313/about/</loc><lastmod>2026-07-03T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://0.0.0.0:1313/posts/seismology/</loc></url><url>
+            <loc>http://0.0.0.0:1313/posts/fitness/</loc></url><url>
+            <loc>http://0.0.0.0:1313/books/</loc></url></urlset>

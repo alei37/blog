@@ -1,0 +1,72 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>博客 - 标签 - alei 的博客</title>
+        <link>http://0.0.0.0:1313/tags/%E5%8D%9A%E5%AE%A2/</link>
+        <description>博客 - 标签 - alei 的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2114591501@qq.com (alei)</managingEditor>
+            <webMaster>2114591501@qq.com (alei)</webMaster><lastBuildDate>Fri, 03 Jul 2026 11:55:00 &#43;0800</lastBuildDate><atom:link href="http://0.0.0.0:1313/tags/%E5%8D%9A%E5%AE%A2/" rel="self" type="application/rss+xml" /><item>
+    <title>Hello, Hugo!</title>
+    <link>http://0.0.0.0:1313/posts/computer/hello-world/</link>
+    <pubDate>Fri, 03 Jul 2026 11:55:00 &#43;0800</pubDate>
+    <author>2114591501@qq.com (alei)</author>
+    <guid>http://0.0.0.0:1313/posts/computer/hello-world/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>这是博客的第一篇文章！🎉</p>
+<p>用来测试一下 Hugo + LoveIt 主题的基本功能。</p>
+<h2 id="代码高亮测试">代码高亮测试</h2>
+<p>Python 代码块：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-python">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="sa">f</span><span class="s2">&#34;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">!&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">hello</span><span class="p">(</span><span class="s2">&#34;alei&#34;</span><span class="p">))</span></span></span></code></pre></div></div>
+<p>Bash 命令：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo server -D</span></span></code></pre></div></div>
+<h2 id="公式测试">公式测试</h2>
+<p>行内公式：爱因斯坦场方程 $G_{\mu\nu} = 8\pi G T_{\mu\nu}$。</p>
+<p>块级公式：</p>
+<p>$$
+\frac{\partial u}{\partial t} = \nu \nabla^2 u
+$$</p>
+<h2 id="表格测试">表格测试</h2>
+<table>
+	<thead>
+			<tr>
+					<th>列1</th>
+					<th>列2</th>
+					<th>列3</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>A</td>
+					<td>B</td>
+					<td>C</td>
+			</tr>
+			<tr>
+					<td>1</td>
+					<td>2</td>
+					<td>3</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="任务列表">任务列表</h2>
+<ul>
+<li><i class="far fa-check-square" aria-hidden="true"></i> 搭建 Hugo 博客</li>
+<li><i class="far fa-check-square" aria-hidden="true"></i> 配置 GitHub Actions 自动部署</li>
+<li><i class="far fa-check-square" aria-hidden="true"></i> 启用 GitHub Pages</li>
+<li><i class="far fa-square" aria-hidden="true"></i> 写更多文章</li>
+<li><i class="far fa-square" aria-hidden="true"></i> 配置 Giscus 评论</li>
+</ul>]]></description>
+</item>
+</channel>
+</rss>
