@@ -6,6 +6,8 @@ layout: about
 cover: /images/about-cover.jpg
 ---
 
+![alei](/images/alei.png)
+
 ## 你好 👋
 
 我是 alei，目前在中国地质大学（北京）攻读**地球物理学**的硕士学位，研究方向为**地震学**。

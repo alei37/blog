@@ -23,16 +23,7 @@ theme = "LoveIt"
     link = "/about/"
   description = "记录技术探索 · 地震学笔记 · 生活随想"
   keywords = ["博客", "地震学", "计算机", "健身", "书单"]
-  
-  # 头像（放在 static/images/avatar.jpg）
-  avatar = "/images/avatar.jpg"
-  
-  # 关于页面文字
-  tagline = "地震学研究生 · 一个好奇的人 "
-  
-  # 头图（首页 Hero 背景）
-  header_image = "/images/alei.png"
-  
+
   # 社交链接（按需填写）
   [params.social]
     github = "alei37"
@@ -70,8 +61,6 @@ theme = "LoveIt"
     typeit = false
 
 [params.home]
-  # 全屏 Hero 模式
-  homeHeaderType = "jumbotron"  # jumbotron = 全屏大图模式
   # 首页每页文章数
   postsPerPage = 10
   # 显示文章列表
@@ -81,10 +70,21 @@ theme = "LoveIt"
   # 显示标签
   showTags = true
 
-  # 首页 hero 区域的标题和副标题
+  # 首页个人卡片（头像 + 标题 + 副标题）
   [params.home.profile]
+    enable = true
+    # Gravatar 邮箱（留空就用 avatarURL）
+    gravatarEmail = ""
+    # 首页头像 ← 关键字段！
+    avatarURL = "/images/avatar.jpg"
+    # 标题
     title = "alei site"
+    # 副标题
     subtitle = "This is alei's home page"
+    # 是否打字机动画
+    typeit = false
+    # 是否显示社交链接
+    social = true
 
 [params.page]
   # 显示目录
