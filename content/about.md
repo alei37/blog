@@ -8,17 +8,17 @@ cover: /images/about-cover.jpg
 
 ## 你好 👋
 
-我是 alei，目前在某高校攻读**地震学**方向的硕士学位。
+我是 alei，目前在中国地质大学（北京）攻读**地球物理学**的硕士学位，研究方向为地震学。
 
 ### 🎓 研究方向
 - 地震各向异性
 - 剪切波分裂分析
-- 地震波数值模拟
+- 定位工作流程
 
 ### 💻 技术栈
-- **编程语言**：Python、Fortran、MATLAB、Bash
-- **地震学工具**：SAC、ObsPy、ASDF
-- **开发工具**：Linux、Git、Neovim
+- **编程语言**：Python、MATLAB、Bash
+- **地震学工具**：SAC、ObsPy、MFAST
+- **开发工具**：Linux、Git、vscode、claudecode
 
 ### 💪 健身
 坚持系统训练，记录健身计划和进度，分享科学健身知识。

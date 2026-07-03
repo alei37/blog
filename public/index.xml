@@ -1,17 +1,17 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>alei 的博客</title>
-        <link>http://0.0.0.0:1313/</link>
+        <link>http://localhost:1313/</link>
         <description>This is my cool site</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2114591501@qq.com (alei)</managingEditor>
             <webMaster>2114591501@qq.com (alei)</webMaster><lastBuildDate>Fri, 03 Jul 2026 11:55:00 &#43;0800</lastBuildDate>
-            <atom:link href="http://0.0.0.0:1313/index.xml" rel="self" type="application/rss+xml" />
+            <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>Hello, Hugo!</title>
-    <link>http://0.0.0.0:1313/posts/computer/hello-world/</link>
+    <link>http://localhost:1313/posts/computer/hello-world/</link>
     <pubDate>Fri, 03 Jul 2026 11:55:00 &#43;0800</pubDate>
     <author>2114591501@qq.com (alei)</author>
-    <guid>http://0.0.0.0:1313/posts/computer/hello-world/</guid>
+    <guid>http://localhost:1313/posts/computer/hello-world/</guid>
     <description><![CDATA[<h2 id="前言">前言</h2>
 <p>这是博客的第一篇文章！🎉</p>
 <p>用来测试一下 Hugo + LoveIt 主题的基本功能。</p>
