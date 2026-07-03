@@ -99,6 +99,13 @@ theme = "LoveIt"
   highlight = true
   highlightLanguages = ["python", "fortran", "matlab", "bash"]
   highlightLanguagesDefault = false
+  # 数学公式（KaTeX）
+  [params.page.math]
+    enable = true
+    # 复制 LaTeX 源码
+    copyTex = true
+    # 化学公式支持
+    mhchem = true
 
 [params.search]
   enable = true
@@ -133,10 +140,6 @@ theme = "LoveIt"
     reactionsEnabled = "1"
     emitMetadata = "0"
     inputPosition = "bottom"
-
-[params.math]
-  enable = true
-  provider = "katex"  # 或 "mathjax"
 
 [params.mapbox]
   enable = false
