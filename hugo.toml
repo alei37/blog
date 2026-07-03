@@ -127,10 +127,10 @@ theme = "LoveIt"
   busuanzi_site_uv = true
   busuanzi_site_pv = true
 
-[params.comment]
+[params.page.comment]
   enable = true
   # Giscus（GitHub Discussions 评论，推荐）
-  [params.comment.giscus]
+  [params.page.comment.giscus]
     enable = true
     repo = "alei37/alei37.github.io"
     repoId = "R_kgDOTMJovQ"
