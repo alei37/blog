@@ -29,7 +29,7 @@ cover: /images/about-cover.jpg
 科普书、经济学、小说、轻小说都会读一些，热爱分享读书感想。
 
 ### 🔗 联系方式
-- GitHub: [alei](https://github.com/alei)
+- GitHub: [alei](https://github.com/alei37)
 - Email: 2114591501@qq.com
 - 微信公众号：寰宇识道
 - bilibili：[alei_37](https://space.bilibili.com/178445395?spm_id_from=333.337.0.0)
