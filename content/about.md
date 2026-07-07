@@ -6,6 +6,10 @@ layout: about
 cover: /images/about-cover.jpg
 ---
 
+<div style="text-align:center; margin: 0 0 1.5em 0;">
+  <img src="/images/alei.png" alt="alei" style="width:50%; max-width:600px; border-radius:8px;" />
+</div>
+
 ## 你好 👋
 
 我是 alei，目前在中国地质大学（北京）攻读**地球物理学**硕士学位，研究方向为**地震学**。
