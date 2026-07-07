@@ -26,13 +26,13 @@ cover: /images/about-cover.jpg
 坚持系统训练，记录健身计划和进度，分享科学健身知识。
 
 ### 📚 阅读
-技术书、科普书、心理学都有涉猎，定期分享读书笔记。
+科普书、经济学、小说、轻小说都会读一些，热爱分享读书感想。
 
 ### 🔗 联系方式
 - GitHub: [alei](https://github.com/alei)
 - Email: 2114591501@qq.com
-- 微信公众号：待定
-
+- 微信公众号：寰宇识道
+- bilibili：[alei_37](https://space.bilibili.com/178445395?spm_id_from=333.337.0.0)
 ---
 
 *期待与你交流！*
