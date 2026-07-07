@@ -22,7 +22,7 @@ theme = "LoveIt"
     email = "2114591501@qq.com"
     link = "/about/"
   description = "记录技术探索 · 地震学笔记 · 生活随想"
-  keywords = ["博客", "地震学", "计算机", "健身", "书单"]
+  keywords = ["博客", "地震学", "计算机", "AI", "书单"]
 
   # 社交链接（按需填写）
   [params.social]
@@ -172,9 +172,9 @@ theme = "LoveIt"
   url = "/posts/seismology/"
   weight = 12
 [[menu.main]]
-  identifier = "fitness"
-  name = "健身"
-  url = "/posts/fitness/"
+  identifier = "ai"
+  name = "AI"
+  url = "/posts/ai/"
   weight = 13
 [[menu.main]]
   identifier = "books"
