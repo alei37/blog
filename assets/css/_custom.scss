@@ -1,0 +1,61 @@
+// ==============================
+// Custom style
+// 自定义样式
+// ==============================
+
+// 文章页 / 文章列表：用头像替换默认的 fa-user-circle 图标
+// 主题 single.html:35-36 生成的 HTML:
+//   <span class="post-author">
+//     <a class="author" href="..." title="Author" rel="author">
+//       <i class="fas fa-user-circle" aria-hidden="true"></i>
+//       alei
+//     </a>
+//   </span>
+
+.post-author {
+    .author {
+        // 用 flex 让头像和文字垂直居中
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4em;
+
+        // 1. 隐藏 Font Awesome 图标
+        > i.fa-user-circle {
+            display: none !important;
+        }
+
+        // 2. 用 ::before 伪元素注入头像图片
+        &::before {
+            content: "";
+            display: inline-block;
+            width: 1.6em;
+            height: 1.6em;
+            border-radius: 50%;
+            background: url("/images/avatar.jpg") center/cover no-repeat;
+            flex-shrink: 0;
+        }
+    }
+}
+
+// 文章摘要（summary.html）可能也有 .post-author，同样的样式会生效
+.summary .post-author {
+    .author {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4em;
+
+        > i.fa-user-circle {
+            display: none !important;
+        }
+
+        &::before {
+            content: "";
+            display: inline-block;
+            width: 1.4em;
+            height: 1.4em;
+            border-radius: 50%;
+            background: url("/images/avatar.jpg") center/cover no-repeat;
+            flex-shrink: 0;
+        }
+    }
+}
