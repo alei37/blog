@@ -183,7 +183,7 @@ theme = "LoveIt"
   weight = 14
 [[menu.main]]
   identifier = "about"
-  name = "关于"
+  name = "关于我"
   url = "/about/"
   weight = 20
 

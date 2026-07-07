@@ -1,12 +1,10 @@
 ---
-title: 关于
+title: 关于我
 date: 2026-07-03
 type: page
 layout: about
 cover: /images/about-cover.jpg
 ---
-
-![alei](/images/alei.png)
 
 ## 你好 👋
 
