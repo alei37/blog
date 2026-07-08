@@ -24,9 +24,6 @@ cover: /images/about-cover.jpg
 - **地震学工具**：SAC、ObsPy、MFAST
 - **开发工具**：Linux、Git、vscode、claudecode
 
-### 🤖 AI
-AI 工具实战、LLM 应用、机器学习笔记，记录学习 AI 的心得。
-
 ### 📚 阅读
 科普书、经济学、小说、轻小说都会读一些，热爱分享读书感想。
 
