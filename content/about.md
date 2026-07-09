@@ -7,7 +7,7 @@ cover: /images/about-cover.jpg
 ---
 
 <div style="text-align:center; margin: 0 0 1.5em 0;">
-  <img src="/images/alei.png" alt="alei" style="width:50%; max-width:600px; border-radius:8px;" />
+  <img src="/images/alei.png" alt="alei" style="width:35%; max-width:450px; border-radius:8px;" />
 </div>
 
 ## 你好 👋
