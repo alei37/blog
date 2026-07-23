@@ -11,3 +11,7 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+
+# Claude Code 本地状态
+.claude/
+__pycache__/

@@ -1,0 +1,14 @@
+# sync-obsidian.ignore
+# 每行一个子目录名（匹配 Obsidian 02-Projects/博客/ 下的任何路径段）。
+# 匹配到的目录及其下所有内容都不会被同步到博客。
+#
+# 已有内置跳过规则（无需在此列出）：
+#   - 以 _ 开头（_drafts/, _scratch/...）
+#   - 以 . 开头（.obsidian/...）
+#   - 以 NN- 开头（00-总览.md, 01-...md）
+#   - 含 excalidraw-plugin: frontmatter（绘图文件）
+#   - 0 字节文件
+#
+# 在此添加你想跳过但又不想用 _ 命名的目录：
+
+草稿

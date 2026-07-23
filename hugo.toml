@@ -177,10 +177,15 @@ theme = "LoveIt"
   url = "/posts/ai/"
   weight = 13
 [[menu.main]]
+  identifier = "market"
+  name = "💹 股票与市场"
+  url = "/posts/market/"
+  weight = 14
+[[menu.main]]
   identifier = "books"
   name = "📚 书籍分享"
   url = "/books/"
-  weight = 14
+  weight = 15
 [[menu.main]]
   identifier = "about"
   name = "关于我"
