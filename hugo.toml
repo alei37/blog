@@ -183,7 +183,7 @@ theme = "LoveIt"
   weight = 14
 [[menu.main]]
   identifier = "books"
-  name = "📚 书籍分享"
+  name = "📚 读书分享"
   url = "/books/"
   weight = 15
 [[menu.main]]
