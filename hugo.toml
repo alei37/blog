@@ -39,7 +39,7 @@ theme = "LoveIt"
   # 暗色主题配色
   darkThemeColor = "#5e72e4"
   # 自定义 CSS
-  customCSS = []
+  customCSS = ["css/custom.css"]
   
 # 页面头部导航栏
 [params.header]

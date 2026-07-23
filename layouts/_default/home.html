@@ -1,0 +1,100 @@
+{{- define "content" -}}
+    {{- $params := .Scratch.Get "params" -}}
+    {{- $profile := .Site.Params.home.profile -}}
+    {{- $posts := .Site.Params.home.posts -}}
+
+    <div class="page home"{{ if ne $posts.enable false }} data-home="posts"{{ end }}>
+        <div class="home-with-sidebar">
+            {{- /* 主区 */ -}}
+            <main class="home-main">
+                {{- /* Profile */ -}}
+                {{- if ne $profile.enable false -}}
+                    {{- partial "home/profile.html" . -}}
+                {{- end -}}
+
+                {{- /* Content */ -}}
+                {{- if .Content -}}
+                    <div class="single">
+                        <div class="content" id="content">
+                            {{- dict "Content" .Content "Ruby" $params.ruby "Fraction" $params.fraction "Fontawesome" $params.fontawesome | partial "function/content.html" | safeHTML -}}
+                        </div>
+                    </div>
+                {{- end -}}
+
+                {{- /* 文章瀑布流 */ -}}
+                {{- if ne $posts.enable false | and .Site.RegularPages -}}
+                    <div class="home-posts">
+                        {{- $pages := where .Site.RegularPages "Type" "posts" -}}
+                        {{- if .Site.Params.page.hiddenFromHomePage -}}
+                            {{- $pages = where $pages "Params.hiddenfromhomepage" false -}}
+                        {{- else -}}
+                            {{- $pages = where $pages "Params.hiddenfromhomepage" "!=" true -}}
+                        {{- end -}}
+                        {{- with $posts.paginate | default .Site.Params.paginate -}}
+                            {{- $pages = $.Paginate $pages . -}}
+                        {{- else -}}
+                            {{- $pages = $.Paginate $pages -}}
+                        {{- end -}}
+                        {{- range $pages.Pages -}}
+                            {{- .Render "summary" -}}
+                        {{- end -}}
+                        {{- partial "paginator.html" . -}}
+                    </div>
+                {{- end -}}
+            </main>
+
+            {{- /* 侧边栏 */ -}}
+            <aside class="home-sidebar">
+                {{- /* 板块目录 */ -}}
+                <section class="sidebar-section">
+                    <h3 class="sidebar-title">板块</h3>
+                    <ul class="sidebar-menu">
+                        {{- range .Site.Menus.main -}}
+                            {{- $url := .URL | relLangURL -}}
+                            {{- if .Page -}}
+                                {{- $url = .Page.RelPermalink -}}
+                            {{- end -}}
+                            <li>
+                                <a href="{{ $url }}"{{ if (urls.Parse .URL).Host }} rel="noopener noreferrer" target="_blank"{{ end }} class="sidebar-link">
+                                    <span class="sidebar-name">{{ .Name | emojify }}</span>
+                                </a>
+                            </li>
+                        {{- end -}}
+                    </ul>
+                </section>
+
+                {{- /* 分类 */ -}}
+                {{- $categories := .Site.Taxonomies.categories -}}
+                {{- if $categories -}}
+                    <section class="sidebar-section">
+                        <h3 class="sidebar-title">分类</h3>
+                        <ul class="sidebar-cloud">
+                            {{- range $categories.ByCount -}}
+                                <li>
+                                    <a href="{{ .Page.RelPermalink }}" class="sidebar-link">
+                                        {{ .Page.Title }} <span class="sidebar-count">{{ .Count }}</span>
+                                    </a>
+                                </li>
+                            {{- end -}}
+                        </ul>
+                    </section>
+                {{- end -}}
+
+                {{- /* 最新文章 */ -}}
+                {{- $recent := first 5 (where .Site.RegularPages "Type" "posts") -}}
+                {{- if $recent -}}
+                    <section class="sidebar-section">
+                        <h3 class="sidebar-title">最新文章</h3>
+                        <ul class="sidebar-recent">
+                            {{- range $recent -}}
+                                <li>
+                                    <a href="{{ .RelPermalink }}" class="sidebar-link">{{ .Title | emojify }}</a>
+                                </li>
+                            {{- end -}}
+                        </ul>
+                    </section>
+                {{- end -}}
+            </aside>
+        </div>
+    </div>
+{{- end -}}
