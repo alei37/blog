@@ -368,7 +368,14 @@ def sync_assets(dry_run: bool, verbose: bool, prune: bool = False):
     """把 vault/attachments/ 同步到 static/images/obsidian/.
 
     默认不 --delete (保护 article assets 创建的子目录被误删).
-    加 --prune-vault-assets 时严格镜像 vault/attachments/."""
+    加 --prune-vault-assets 时严格镜像 vault/attachments/, 但会 protect
+    sync_article_assets 产生的子目录(避免 article images 被删).
+
+    排除规则 (大文件 / 不适合放博客):
+        *.pdf, *.PDF         - 论文 PDF (vault 内, article 旁的 PDF 保留)
+        *.zip, *.tar, *.tar.gz, *.7z, *.rar
+        *.iso, *.dmg
+    """
     if not SRC_ASSETS.exists():
         print(f"⚠️  附件目录不存在: {SRC_ASSETS}", file=sys.stderr)
         return
@@ -383,6 +390,17 @@ def sync_assets(dry_run: bool, verbose: bool, prune: bool = False):
         "rsync", "-a",
         "--exclude", ".DS_Store",
         "--exclude", ".obsidian",
+        # 大文件 / 不应进博客
+        "--exclude", "*.pdf",
+        "--exclude", "*.PDF",
+        "--exclude", "*.zip",
+        "--exclude", "*.tar",
+        "--exclude", "*.tar.gz",
+        "--exclude", "*.tgz",
+        "--exclude", "*.7z",
+        "--exclude", "*.rar",
+        "--exclude", "*.iso",
+        "--exclude", "*.dmg",
     ]
     if verbose:
         cmd.append("-v")
@@ -390,8 +408,31 @@ def sync_assets(dry_run: bool, verbose: bool, prune: bool = False):
         cmd.append("-n")  # --dry-run
     if prune:
         cmd.append("--delete")
+        # 保护 article assets 子目录不被 --delete 清空
+        for slug in collect_article_asset_slugs():
+            # rsync filter P = protect, 让 --delete 不动该路径下任何东西
+            cmd.extend(["--filter", f"P {slug}/"])
     cmd += [f"{SRC_ASSETS}/", f"{DST_ASSETS}/"]
     subprocess.run(cmd, check=True)
+
+
+def collect_article_asset_slugs() -> set:
+    """扫 SRC_POSTS 找所有 article 旁 assets/ 目录, 返回对应的 article slug 集合.
+
+    一个 article slug 是 .md 文件名去后缀, 例: 2026-07-17_arXiv_Song_VORA_精读
+    """
+    out = set()
+    if not SRC_POSTS.exists():
+        return out
+    for assets_dir in SRC_POSTS.rglob("assets"):
+        if not assets_dir.is_dir():
+            continue
+        # article_slug = assets/ 父目录里非 _index.md 的 .md 文件名(去 .md)
+        for md in assets_dir.parent.glob("*.md"):
+            if md.name == "_index.md":
+                continue
+            out.add(md.stem)
+    return out
 
 
 def sync_article_assets(src_md: Path, article_slug: str, dry_run: bool, verbose: bool) -> bool:
