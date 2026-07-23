@@ -3,6 +3,17 @@
     {{- $profile := .Site.Params.home.profile -}}
     {{- $posts := .Site.Params.home.posts -}}
 
+    {{- /* 给每个板块一个柔和背景色 */ -}}
+    {{- $menuColors := dict
+        "posts" "#0070c0"
+        "computer" "#10b981"
+        "seismology" "#f59e0b"
+        "ai" "#8b5cf6"
+        "market" "#ef4444"
+        "books" "#06b6d4"
+        "about" "#6b7280"
+    -}}
+
     <div class="page home"{{ if ne $posts.enable false }} data-home="posts"{{ end }}>
         <div class="home-with-sidebar">
             {{- /* 主区 */ -}}
@@ -47,32 +58,49 @@
             <aside class="home-sidebar">
                 {{- /* 板块目录 */ -}}
                 <section class="sidebar-section">
-                    <h3 class="sidebar-title">板块</h3>
+                    <h3 class="sidebar-title">
+                        <i class="fas fa-compass"></i>
+                        <span>板块</span>
+                    </h3>
                     <ul class="sidebar-menu">
                         {{- range .Site.Menus.main -}}
                             {{- $url := .URL | relLangURL -}}
                             {{- if .Page -}}
                                 {{- $url = .Page.RelPermalink -}}
                             {{- end -}}
+                            {{- $color := index $menuColors .Identifier | default "#94a3b8" -}}
                             <li>
-                                <a href="{{ $url }}"{{ if (urls.Parse .URL).Host }} rel="noopener noreferrer" target="_blank"{{ end }} class="sidebar-link">
+                                <a href="{{ $url }}"{{ if (urls.Parse .URL).Host }} rel="noopener noreferrer" target="_blank"{{ end }} class="sidebar-link menu-link">
+                                    <span class="menu-dot" style="background: {{ $color }};"></span>
                                     <span class="sidebar-name">{{ .Name | emojify }}</span>
+                                    <i class="fas fa-chevron-right menu-arrow"></i>
                                 </a>
                             </li>
                         {{- end -}}
                     </ul>
                 </section>
 
-                {{- /* 分类 */ -}}
+                {{- /* 分类云 (按文章数调整字号) */ -}}
                 {{- $categories := .Site.Taxonomies.categories -}}
                 {{- if $categories -}}
+                    {{- $maxCount := 1 -}}
+                    {{- range $categories -}}
+                        {{- if gt .Count $maxCount -}}
+                            {{- $maxCount = .Count -}}
+                        {{- end -}}
+                    {{- end -}}
                     <section class="sidebar-section">
-                        <h3 class="sidebar-title">分类</h3>
+                        <h3 class="sidebar-title">
+                            <i class="fas fa-tags"></i>
+                            <span>分类</span>
+                        </h3>
                         <ul class="sidebar-cloud">
                             {{- range $categories.ByCount -}}
+                                {{- $ratio := div (float .Count) (float $maxCount) -}}
+                                {{- $size := add 0.85 (mul $ratio 0.4) -}}
                                 <li>
-                                    <a href="{{ .Page.RelPermalink }}" class="sidebar-link">
-                                        {{ .Page.Title }} <span class="sidebar-count">{{ .Count }}</span>
+                                    <a href="{{ .Page.RelPermalink }}" class="sidebar-link cloud-link" style="font-size: {{ printf "%.2f" $size }}rem;">
+                                        {{ .Page.Title }}
                                     </a>
                                 </li>
                             {{- end -}}
@@ -80,15 +108,21 @@
                     </section>
                 {{- end -}}
 
-                {{- /* 最新文章 */ -}}
+                {{- /* 最新文章 (带日期) */ -}}
                 {{- $recent := first 5 (where .Site.RegularPages "Type" "posts") -}}
                 {{- if $recent -}}
                     <section class="sidebar-section">
-                        <h3 class="sidebar-title">最新文章</h3>
+                        <h3 class="sidebar-title">
+                            <i class="fas fa-clock"></i>
+                            <span>最新</span>
+                        </h3>
                         <ul class="sidebar-recent">
                             {{- range $recent -}}
                                 <li>
-                                    <a href="{{ .RelPermalink }}" class="sidebar-link">{{ .Title | emojify }}</a>
+                                    <a href="{{ .RelPermalink }}" class="sidebar-link">
+                                        <span class="recent-title">{{ .Title | emojify }}</span>
+                                        <span class="recent-date">{{ .PublishDate.Format "01-02" }}</span>
+                                    </a>
                                 </li>
                             {{- end -}}
                         </ul>

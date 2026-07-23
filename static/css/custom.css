@@ -27,25 +27,34 @@
 /* ---------- sidebar 卡片 ---------- */
 
 .sidebar-section {
-    margin-bottom: 1.5rem;
-    padding: 1rem 1.1rem;
-    background: var(--card-bg, rgba(255, 255, 255, 0.04));
-    border-radius: 8px;
-    border: 1px solid var(--card-border, rgba(125, 125, 125, 0.2));
+    margin-bottom: 1.2rem;
+    padding: 0.9rem 1rem 1rem;
+    background: var(--card-bg, rgba(255, 255, 255, 0.025));
+    border-radius: 10px;
+    border: 1px solid var(--card-border, rgba(125, 125, 125, 0.18));
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 .sidebar-title {
-    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.78rem;
     font-weight: 700;
-    margin: 0 0 0.8rem 0;
+    margin: 0 0 0.7rem 0;
     padding-bottom: 0.55rem;
-    border-bottom: 1px solid var(--card-border, rgba(125, 125, 125, 0.2));
+    border-bottom: 1px solid var(--card-border, rgba(125, 125, 125, 0.18));
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: inherit;
+    letter-spacing: 0.08em;
+    color: var(--global-font-secondary-color, #6b7280);
 }
 
-/* ---------- 列表 ---------- */
+.sidebar-title i {
+    font-size: 0.78rem;
+    opacity: 0.7;
+}
+
+/* ---------- 板块目录 ---------- */
 
 .sidebar-menu,
 .sidebar-cloud,
@@ -63,50 +72,129 @@
 
 .sidebar-link {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.45rem 0.55rem;
+    gap: 0.55rem;
+    padding: 0.5rem 0.6rem;
     border-radius: 6px;
     color: inherit;
     text-decoration: none;
-    transition: background 0.18s, color 0.18s;
+    transition: background 0.18s, transform 0.18s;
     line-height: 1.4;
 }
 
 .sidebar-link:hover {
-    background: rgba(125, 125, 125, 0.12);
+    background: rgba(125, 125, 125, 0.10);
 }
 
-.sidebar-recent .sidebar-link {
-    font-size: 0.85rem;
-    line-height: 1.35;
+.sidebar-link:hover .sidebar-name,
+.sidebar-link:hover .recent-title,
+.sidebar-link:hover .cloud-link {
+    color: var(--theme-color, #0070c0);
 }
 
-.sidebar-count {
+/* 板块：左侧颜色圆点 + 名称 + 右侧箭头 */
+.menu-link {
+    justify-content: flex-start;
+    gap: 0.6rem;
+}
+
+.menu-link .sidebar-name {
+    flex: 1;
+}
+
+.menu-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
     flex-shrink: 0;
-    font-size: 0.7rem;
-    background: rgba(125, 125, 125, 0.18);
-    padding: 0.05rem 0.5rem;
-    border-radius: 10px;
-    min-width: 1.6rem;
-    text-align: center;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.08);
+}
+
+.menu-arrow {
+    font-size: 0.65rem;
+    opacity: 0;
+    transition: opacity 0.18s, transform 0.18s;
+}
+
+.menu-link:hover .menu-arrow {
+    opacity: 0.55;
+    transform: translateX(2px);
+}
+
+/* ---------- 分类云 ---------- */
+
+.sidebar-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    padding: 0.2rem 0;
+}
+
+.sidebar-cloud li {
+    margin: 0;
+}
+
+.cloud-link {
+    padding: 0.25rem 0.65rem;
+    border-radius: 12px;
+    background: rgba(125, 125, 125, 0.08);
+    color: inherit;
+    line-height: 1.3;
     font-weight: 500;
 }
 
-/* ---------- 暗色主题适配 ---------- */
+.cloud-link:hover {
+    background: var(--theme-color, #0070c0);
+    color: #fff !important;
+}
+
+/* ---------- 最新文章 ---------- */
+
+.recent-title {
+    flex: 1;
+    font-size: 0.85rem;
+    line-height: 1.35;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.recent-date {
+    font-size: 0.7rem;
+    color: var(--global-font-secondary-color, #6b7280);
+    flex-shrink: 0;
+    opacity: 0.7;
+    font-variant-numeric: tabular-nums;
+}
+
+.sidebar-recent .sidebar-link {
+    gap: 0.6rem;
+}
+
+/* ---------- 暗色主题 ---------- */
 
 [theme="dark"] .sidebar-section {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.035);
     border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 [theme="dark"] .sidebar-link:hover {
     background: rgba(255, 255, 255, 0.06);
 }
 
-[theme="dark"] .sidebar-count {
-    background: rgba(255, 255, 255, 0.08);
+[theme="dark"] .cloud-link {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+[theme="dark"] .cloud-link:hover {
+    background: var(--theme-color, #0070c0);
+}
+
+[theme="dark"] .menu-dot {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
 }
 
 /* ---------- 响应式: ≤1024px 隐藏 sidebar ---------- */
