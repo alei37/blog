@@ -178,7 +178,7 @@ theme = "LoveIt"
   weight = 13
 [[menu.main]]
   identifier = "market"
-  name = "💹 投资与市场"
+  name = "💹 市场与投资"
   url = "/posts/market/"
   weight = 14
 [[menu.main]]
