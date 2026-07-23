@@ -197,9 +197,9 @@
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
 }
 
-/* ---------- 响应式: ≤1024px 隐藏 sidebar ---------- */
+/* ---------- 响应式: ≤640px 折叠 sidebar ---------- */
 
-@media (max-width: 1024px) {
+@media (max-width: 640px) {
     .home-with-sidebar {
         grid-template-columns: minmax(0, 1fr);
         gap: 1rem;
