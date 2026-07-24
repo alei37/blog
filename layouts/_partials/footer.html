@@ -50,5 +50,8 @@
     </footer>
 {{- end -}}
 
+{{- /* 自定义样式：LoveIt 主题不识别 params.style.customCSS，这里手动加载 */ -}}
+<link rel="stylesheet" href="{{ "css/custom.css" | relURL }}">
+
 {{- /* 自定义：双击公式复制 LaTeX 源码 */ -}}
 <script defer src="{{ "js/math-dblclick.js" | relURL }}"></script>
