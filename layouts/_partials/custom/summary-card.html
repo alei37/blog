@@ -19,7 +19,7 @@
     {{- end -}}
 {{- end -}}
 
-{{- /* 封面图：front matter 优先 → 页面资源次之 */ -}}
+{{- /* 封面图：front matter → 页面资源 → Resources 图片 → 正文第一张图 */ -}}
 {{- $image := "" -}}
 {{- with .Params.featuredImagePreview -}}
     {{- $image = . -}}
@@ -29,6 +29,28 @@
 {{- end -}}
 {{- with .Resources.GetMatch "featured-image*" -}}
     {{- $image = .RelPermalink -}}
+{{- end -}}
+{{- if not $image -}}
+    {{- range .Resources.ByType "image" -}}
+        {{- if not $image -}}
+            {{- $image = .RelPermalink -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+{{- if not $image -}}
+    {{- /* 优先 data-src（LoveIt lazyload 把真实图放在 data-src） */ -}}
+    {{- with findRE `data-src="[^"]+"` .Content 1 -}}
+        {{- $image = replaceRE `data-src="(.*)"` "$1" (index . 0) -}}
+    {{- end -}}
+{{- end -}}
+{{- if not $image -}}
+    {{- /* fallback：未被 lazyload 改写的 <img src>，排除占位符 */ -}}
+    {{- with findRE `<img[^>]+src="[^"]+"` .Content 1 -}}
+        {{- $imgSrc := replaceRE `<img[^>]+src="(.*)"` "$1" (index . 0) -}}
+        {{- if not (in $imgSrc "loading.min.svg") -}}
+            {{- $image = $imgSrc -}}
+        {{- end -}}
+    {{- end -}}
 {{- end -}}
 
 {{- /* 板块色 + 图标 */ -}}
