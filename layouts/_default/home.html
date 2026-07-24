@@ -3,16 +3,8 @@
     {{- $profile := .Site.Params.home.profile -}}
     {{- $posts := .Site.Params.home.posts -}}
 
-    {{- /* 给每个板块一个柔和背景色 */ -}}
-    {{- $menuColors := dict
-        "posts" "#0070c0"
-        "computer" "#10b981"
-        "seismology" "#f59e0b"
-        "ai" "#8b5cf6"
-        "market" "#ef4444"
-        "books" "#06b6d4"
-        "about" "#6b7280"
-    -}}
+    {{- /* 板块配色（与 summary-card 共享） */ -}}
+    {{- $menuColors := partial "custom/menu-colors.html" . -}}
 
     <div class="page home"{{ if ne $posts.enable false }} data-home="posts"{{ end }}>
         <div class="home-with-sidebar">
@@ -47,7 +39,7 @@
                             {{- $pages = $.Paginate $pages -}}
                         {{- end -}}
                         {{- range $pages.Pages -}}
-                            {{- .Render "summary" -}}
+                            {{- partial "custom/summary-card.html" . -}}
                         {{- end -}}
                         {{- partial "paginator.html" . -}}
                     </div>

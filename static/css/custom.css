@@ -224,3 +224,173 @@
 .home-sidebar::-webkit-scrollbar-thumb:hover {
     background: rgba(125, 125, 125, 0.5);
 }
+
+/* =============================================================
+ * 主页瀑布流：杂志风摘要卡
+ * ============================================================= */
+
+.home-posts {
+    margin-top: 1.5rem;
+}
+
+/* 卡片 */
+.summary-card {
+    display: flex;
+    flex-direction: row;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--card-bg, rgba(255, 255, 255, 0.025));
+    border-radius: 12px;
+    border: 1px solid var(--card-border, rgba(125, 125, 125, 0.18));
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    border-color: rgba(125, 125, 125, 0.32);
+}
+
+/* 左：封面 / 色块 */
+.summary-cover {
+    flex-shrink: 0;
+    width: 220px;
+    aspect-ratio: 4 / 3;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #eee;
+}
+
+.summary-cover a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.summary-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.summary-card:hover .summary-cover img {
+    transform: scale(1.04);
+}
+
+.summary-cover-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 3rem;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.summary-card:hover .summary-cover-placeholder {
+    transform: scale(1.04);
+}
+
+/* 右：内容 */
+.summary-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.35;
+}
+
+.summary-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.summary-title a:hover {
+    color: var(--theme-color, #0070c0);
+}
+
+/* meta 行 */
+.summary-meta {
+    font-size: 0.82rem;
+    color: var(--global-font-secondary-color, #6b7280);
+    margin-bottom: 0.6rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    align-items: center;
+}
+
+.summary-meta i {
+    margin-right: 0.25rem;
+}
+
+.summary-meta a {
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.85;
+    transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.summary-meta a:hover {
+    color: var(--theme-color, #0070c0);
+    opacity: 1;
+}
+
+/* 摘要文字：3 行截断 */
+.summary-excerpt {
+    flex: 1;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--global-font-color, #333);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+}
+
+/* footer */
+.summary-footer {
+    margin-top: 0.75rem;
+}
+
+.read-more {
+    color: var(--theme-color, #0070c0);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: opacity 0.15s ease;
+}
+
+.read-more:hover {
+    opacity: 0.75;
+    text-decoration: underline;
+}
+
+/* 移动端：堆叠布局 */
+@media (max-width: 640px) {
+    .summary-card {
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 0.75rem;
+    }
+    .summary-cover {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+    }
+    .summary-title {
+        font-size: 1.15rem;
+    }
+}

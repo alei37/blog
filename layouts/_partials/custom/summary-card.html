@@ -1,0 +1,97 @@
+{{- /*
+    杂志风文章卡片，替代主题默认 summary。
+    - 有 featuredImage → 显示封面图
+    - 无 featuredImage → 显示板块色块 + 板块图标
+
+    配套 CSS：static/css/custom.css 中 .summary-card 相关样式
+*/ -}}
+
+{{- /* 板块色 + 图标字典 */ -}}
+{{- $colors := partial "custom/menu-colors.html" . -}}
+{{- $icons  := partial "custom/menu-icons.html" . -}}
+
+{{- /* 从路径推板块（优先匹配最具体板块） */ -}}
+{{- $dir := .File.Dir -}}
+{{- $section := "posts" -}}
+{{- range $s := (slice "computer" "seismology" "ai" "market" "books") -}}
+    {{- if in $dir (printf "%s/" $s) -}}
+        {{- $section = $s -}}
+    {{- end -}}
+{{- end -}}
+
+{{- /* 封面图：front matter 优先 → 页面资源次之 */ -}}
+{{- $image := "" -}}
+{{- with .Params.featuredImagePreview -}}
+    {{- $image = . -}}
+{{- end -}}
+{{- with .Params.featuredImage -}}
+    {{- $image = . -}}
+{{- end -}}
+{{- with .Resources.GetMatch "featured-image*" -}}
+    {{- $image = .RelPermalink -}}
+{{- end -}}
+
+{{- /* 板块色 + 图标 */ -}}
+{{- $color := index $colors $section | default "#94a3b8" -}}
+{{- $icon  := index $icons  $section | default "fa-file-alt" -}}
+
+<article class="summary-card" itemscope itemtype="http://schema.org/Article" data-section="{{ $section }}">
+    {{- /* 左：封面图 或 色块 */ -}}
+    <div class="summary-cover">
+        {{- if $image -}}
+            <a href="{{ .RelPermalink }}" aria-label="{{ .Title }}">
+                <img src="{{ $image | relURL }}" alt="{{ .Title }}" loading="lazy">
+            </a>
+        {{- else -}}
+            <a href="{{ .RelPermalink }}" class="summary-cover-placeholder" style="background: {{ $color }};" aria-label="{{ .Title }}">
+                <i class="fas {{ $icon }}" aria-hidden="true"></i>
+            </a>
+        {{- end -}}
+    </div>
+
+    {{- /* 右：内容 */ -}}
+    <div class="summary-body">
+        <h2 class="summary-title" itemprop="name headline">
+            <a href="{{ .RelPermalink }}">{{ .Title | emojify }}</a>
+        </h2>
+
+        <div class="summary-meta">
+            {{- with .PublishDate -}}
+                <time datetime="{{ .Format "2006-01-02" }}" itemprop="datePublished">
+                    <i class="far fa-calendar" aria-hidden="true"></i>&nbsp;{{ .Format "2006-01-02" }}
+                </time>
+            {{- end -}}
+
+            {{- with .Params.categories -}}
+                &nbsp;<span class="summary-cat">
+                    <i class="far fa-folder" aria-hidden="true"></i>&nbsp;
+                    {{- range $i, $v := . -}}
+                        {{- if $i }},&nbsp;{{ end -}}{{ . }}
+                    {{- end -}}
+                </span>
+            {{- end -}}
+
+            {{- with .Params.tags -}}
+                &nbsp;<span class="summary-tags">
+                    <i class="fas fa-tag" aria-hidden="true"></i>&nbsp;
+                    {{- range $i, $v := . -}}
+                        {{- if $i }},&nbsp;{{ end -}}
+                        <a href="{{ printf "/tags/%s" ($v | urlize) | relURL }}">{{ . }}</a>
+                    {{- end -}}
+                </span>
+            {{- end -}}
+        </div>
+
+        <div class="summary-excerpt" itemprop="description">
+            {{- with .Summary -}}
+                {{- $.Summary | plainify | safeHTML -}}
+            {{- else -}}
+                {{- $.Description | safeHTML -}}
+            {{- end -}}
+        </div>
+
+        <div class="summary-footer">
+            <a href="{{ .RelPermalink }}" class="read-more">阅读全文&nbsp;→</a>
+        </div>
+    </div>
+</article>
