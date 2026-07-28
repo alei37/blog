@@ -57,7 +57,6 @@
 /* ---------- 板块目录 ---------- */
 
 .sidebar-menu,
-.sidebar-cloud,
 .sidebar-recent {
     list-style: none;
     padding: 0;
@@ -65,7 +64,6 @@
 }
 
 .sidebar-menu li,
-.sidebar-cloud li,
 .sidebar-recent li {
     margin: 0;
 }
@@ -87,8 +85,7 @@
 }
 
 .sidebar-link:hover .sidebar-name,
-.sidebar-link:hover .recent-title,
-.sidebar-link:hover .cloud-link {
+.sidebar-link:hover .recent-title {
     color: var(--theme-color, #0070c0);
 }
 
@@ -119,33 +116,6 @@
 .menu-link:hover .menu-arrow {
     opacity: 0.55;
     transform: translateX(2px);
-}
-
-/* ---------- 分类云 ---------- */
-
-.sidebar-cloud {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    padding: 0.2rem 0;
-}
-
-.sidebar-cloud li {
-    margin: 0;
-}
-
-.cloud-link {
-    padding: 0.25rem 0.65rem;
-    border-radius: 12px;
-    background: rgba(125, 125, 125, 0.08);
-    color: inherit;
-    line-height: 1.3;
-    font-weight: 500;
-}
-
-.cloud-link:hover {
-    background: var(--theme-color, #0070c0);
-    color: #fff !important;
 }
 
 /* ---------- 最新文章 ---------- */
@@ -183,14 +153,6 @@
 
 [theme="dark"] .sidebar-link:hover {
     background: rgba(255, 255, 255, 0.06);
-}
-
-[theme="dark"] .cloud-link {
-    background: rgba(255, 255, 255, 0.06);
-}
-
-[theme="dark"] .cloud-link:hover {
-    background: var(--theme-color, #0070c0);
 }
 
 [theme="dark"] .menu-dot {

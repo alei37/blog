@@ -72,34 +72,6 @@
                     </ul>
                 </section>
 
-                {{- /* 分类云 (按文章数调整字号) */ -}}
-                {{- $categories := .Site.Taxonomies.categories -}}
-                {{- if $categories -}}
-                    {{- $maxCount := 1 -}}
-                    {{- range $categories -}}
-                        {{- if gt .Count $maxCount -}}
-                            {{- $maxCount = .Count -}}
-                        {{- end -}}
-                    {{- end -}}
-                    <section class="sidebar-section">
-                        <h3 class="sidebar-title">
-                            <i class="fas fa-tags"></i>
-                            <span>分类</span>
-                        </h3>
-                        <ul class="sidebar-cloud">
-                            {{- range $categories.ByCount -}}
-                                {{- $ratio := div (float .Count) (float $maxCount) -}}
-                                {{- $size := add 0.85 (mul $ratio 0.4) -}}
-                                <li>
-                                    <a href="{{ .Page.RelPermalink }}" class="sidebar-link cloud-link" style="font-size: {{ printf "%.2f" $size }}rem;">
-                                        {{ .Page.Title }}
-                                    </a>
-                                </li>
-                            {{- end -}}
-                        </ul>
-                    </section>
-                {{- end -}}
-
                 {{- /* 最新文章 (带日期) */ -}}
                 {{- $recent := first 5 (where .Site.RegularPages "Type" "posts") -}}
                 {{- if $recent -}}
