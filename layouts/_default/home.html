@@ -10,9 +10,9 @@
         <div class="home-with-sidebar">
             {{- /* 主区 */ -}}
             <main class="home-main">
-                {{- /* Profile */ -}}
-                {{- if ne $profile.enable false -}}
-                    {{- partial "home/profile.html" . -}}
+                {{- /* 一句话简介 */ -}}
+                {{- with $profile.subtitle -}}
+                    <p class="home-tagline">{{ . | safeHTML }}</p>
                 {{- end -}}
 
                 {{- /* Content */ -}}
@@ -48,6 +48,39 @@
 
             {{- /* 侧边栏 */ -}}
             <aside class="home-sidebar">
+                {{- /* 个人卡片：头像 + 标题 + 社交链接 */ -}}
+                <section class="sidebar-section sidebar-profile">
+                    {{- $avatar := $profile.avatarURL -}}
+                    {{- with $profile.gravatarEmail -}}
+                        {{- $avatar = md5 . | printf "https://www.gravatar.com/avatar/%v?s=240&d=mp" -}}
+                    {{- end -}}
+                    {{- if $avatar -}}
+                        <div class="profile-avatar">
+                            {{- dict "Src" $avatar | partial "plugin/img.html" -}}
+                        </div>
+                    {{- end -}}
+                    {{- with $profile.title -}}
+                        <h3 class="profile-name">{{ . | safeHTML }}</h3>
+                    {{- end -}}
+                    {{- if $profile.social -}}
+                        <div class="profile-social">
+                            {{- $socialMap := resources.Get "data/social.yml" | transform.Unmarshal -}}
+                            {{- $socialArr := slice -}}
+                            {{- range $key, $value := .Site.Params.social -}}
+                                {{- $social := $key | lower | index $socialMap | default dict -}}
+                                {{- if and (not (reflect.IsMap $value)) $value (ne $value true) -}}
+                                    {{- $socialArr = $socialArr | append (dict "Id" $value | merge $social) -}}
+                                {{- else if reflect.IsMap $value -}}
+                                    {{- $socialArr = $socialArr | append (merge $social $value) -}}
+                                {{- end -}}
+                            {{- end -}}
+                            {{- range sort $socialArr "Weight" -}}
+                                {{- partial "plugin/social.html" . -}}
+                            {{- end -}}
+                        </div>
+                    {{- end -}}
+                </section>
+
                 {{- /* 板块目录 */ -}}
                 <section class="sidebar-section">
                     <h3 class="sidebar-title">

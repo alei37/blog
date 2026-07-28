@@ -188,6 +188,64 @@
 }
 
 /* =============================================================
+ * 主页侧边栏 - 个人卡片（移到侧边栏顶部的紧凑版）
+ * ============================================================= */
+
+.sidebar-profile {
+    text-align: center;
+}
+
+.profile-avatar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.7rem;
+}
+
+.profile-avatar img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 0 3px rgba(125, 125, 125, 0.12);
+}
+
+.profile-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.3;
+}
+
+.profile-social {
+    display: flex;
+    justify-content: center;
+    gap: 0.7rem;
+    font-size: 1.15rem;
+    margin-top: 0.3rem;
+}
+
+.profile-social a {
+    color: var(--global-font-secondary-color, #6b7280);
+    text-decoration: none;
+    transition: color 0.18s, transform 0.18s;
+    display: inline-flex;
+}
+
+.profile-social a:hover {
+    color: var(--theme-color, #0070c0);
+    transform: translateY(-1px);
+}
+
+/* 主区一句话简介 */
+.home-tagline {
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--global-font-secondary-color, #6b7280);
+    margin: 0.5rem 0 1.5rem;
+    font-style: italic;
+}
+
+/* =============================================================
  * 主页瀑布流：杂志风摘要卡
  * ============================================================= */
 
